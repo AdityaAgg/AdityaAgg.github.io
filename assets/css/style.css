@@ -1,0 +1,63 @@
+@charset "UTF-8";
+/* CSS Document */
+
+* {
+	padding:0;
+	margin:0;
+}
+
+html {
+  	color: #000000;
+	font-family: Arial, sans-serif;
+	background-color:#E3E3E3;
+}
+
+.codebox {
+	background-color:#000000;
+	color:#FFFFFF;
+	min-width:50%;
+	min-height:50%;
+	overflow:hidden;
+	resize:none;
+}
+
+#contentcontainer {
+	width:870px;
+	margin:auto;
+	text-align:center;
+}
+
+.card {
+	height:100vh;
+	width:100%;
+	display: flex;
+  	flex-direction: column;
+  	justify-content: center;
+	opacity:1.0;
+	font-family:'Raleway', sans-serif;
+	min-width:100%;
+	min-height:100vh;
+	
+	font-size:48px;
+}
+
+
+.code {
+	font-family:"Courier New", Courier, monospace;
+	color:#888;
+}
+
+.tip {
+	font-size:18px;
+	color:red;
+	
+}
+
+.card img {
+	width:25%;
+	margin:0 auto;
+}
+
+div .styledcontentcontainer {
+
+}
