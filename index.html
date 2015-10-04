@@ -13,19 +13,29 @@
             var oldHTML14=$("#card14").html();
 			var oldHTML9=$("#card9").html();
 			var oldHTML6=$("#card6").html();
-			
+			var lastScroll=0;
 			
 			
 			$(window).scroll(function() {
 				
 				var scrollTop=$(window).scrollTop();
+				
 				for (var cardIterator=0; cardIterator<15; cardIterator++) {
-					
+					var fadeMax=$(window).height()/2;
 					var cardTopLocation=$(window).height()*cardIterator;
 					
-					if (scrollTop<(cardTopLocation+200) && scrollTop>=cardTopLocation){
+					if (scrollTop<(cardTopLocation+(fadeMax*2)) && scrollTop>=(cardTopLocation-fadeMax)){
+						
+						if(scrollTop>=cardTopLocation && scrollTop<(cardTopLocation+fadeMax)) {
 							
-						$('#card'+ (cardIterator+1)).css('opacity', ((cardTopLocation+200)-scrollTop)/200);
+							$('#card'+ (cardIterator+1)).css('opacity', ((cardTopLocation+fadeMax)-scrollTop)/fadeMax);
+						}else {
+							if(scrollTop>(cardTopLocation+(fadeMax*1.5)) && scrollTop>lastScroll){
+								
+								console.log(cardTopLocation+$(window).height+"scrolling");
+								$(document).scrollTop(cardTopLocation+$(window).height());
+							}
+						}
 					
 					} else {
 						 
@@ -41,6 +51,7 @@
 						}
 					}
 				}
+			lastScroll=scrollTop;
 			});
 			
 			
