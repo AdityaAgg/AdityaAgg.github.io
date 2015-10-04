@@ -4,7 +4,8 @@
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 <link rel="stylesheet" href="assets/css/style.css"/>
-<title>Untitled Document</title>
+<link href='https://fonts.googleapis.com/css?family=Raleway' rel='stylesheet' type='text/css'>
+<title>XML Made Easy</title>
 </head>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.3/jquery.min.js"></script>
 	
@@ -14,18 +15,30 @@
 			var oldHTML9=$("#card9").html();
 			var oldHTML6=$("#card6").html();
 			
+			var lastScroll=0;
+			
 			
 			
 			$(window).scroll(function() {
 				
 				var scrollTop=$(window).scrollTop();
-				for (var cardIterator=0; cardIterator<15; cardIterator++) {
+				for (var cardIterator=0; cardIterator<16; cardIterator++) {
 					
+					var fadeMax=$(window).height()/2;
 					var cardTopLocation=$(window).height()*cardIterator;
 					
-					if (scrollTop<(cardTopLocation+200) && scrollTop>=cardTopLocation){
+				if (scrollTop<(cardTopLocation+(fadeMax*2)) && scrollTop>=(cardTopLocation-fadeMax)){
+						
+						if(scrollTop>=cardTopLocation && scrollTop<(cardTopLocation+fadeMax)) {
 							
-						$('#card'+ (cardIterator+1)).css('opacity', ((cardTopLocation+200)-scrollTop)/200);
+							$('#card'+ (cardIterator)).css('opacity', ((cardTopLocation+fadeMax)-scrollTop)/fadeMax);
+						}else {
+							if(scrollTop>(cardTopLocation+(fadeMax*1.5)) && scrollTop>lastScroll){
+								
+								console.log(cardTopLocation+$(window).height+"scrolling");
+								$(document).scrollTop(cardTopLocation+$(window).height());
+							}
+					}
 					
 					} else {
 						 
@@ -41,6 +54,7 @@
 						}
 					}
 				}
+				lastScroll=scrollTop;
 			});
 			
 			
@@ -79,11 +93,37 @@
 			}
 		}
 		
+		function expand_contents() {
+			$(".contents_expand").slideToggle();
+		}
+		
+		
 </script>
 
 <body>
 	<div id="contentcontainer"> 
         <div id="tablecontainer">
+		
+		<div class="logo">
+			<img src="assets/logo.png" width="200px" style="opacity:.5">
+		</div>
+		
+		<div class="contents" onclick="expand_contents()" style="text-align:center">
+		<img src="assets/hamburger.png" style="width: 32px;
+    padding: 9px;
+    opacity: 0.5;" />
+		</div>
+		<div class="contents_expand">
+		<a href="#card1">Card 1: Text</a>
+		<a href="#card5">Card 5: Square</a>
+		<a href="#card13">Card 13: Nesting</a>
+		</div>
+		
+		<div class="card" id="card0">
+			XML Made Easy<br><br>
+			<span style="font-size:24px">(Adapted from <a href="https://drive.google.com/folderview?id=0B9ocvajeApo1fm9hSHY1d2RxOXFfM2FhdVlvT3UtT2xlbVRGb0hrVTFucUFGNDdRUlRoc1U">User Interface Development</a>)
+			</span>
+		</div>
 		
             
           <div class="card" id="card1">
